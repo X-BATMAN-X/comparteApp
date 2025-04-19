@@ -9,8 +9,6 @@ workflows:
       vars:
         PACKAGE_NAME: "com.android.app"
         APP_URL: "https://comparte.vercel.app/"
-      android:
-        build_tools_version: "35.0.0"
       node: latest
       npm: 6
     cache:
@@ -39,7 +37,7 @@ workflows:
     publishing:
       email:
         recipients:
-          - electronicnoise185@gmail.com
+          - soporteparawordpressonline@gmail.com
         notify:
           success: true
           failure: true
