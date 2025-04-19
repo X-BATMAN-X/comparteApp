@@ -11,6 +11,8 @@ workflows:
         APP_URL: "https://comparte.vercel.app/"
         ANDROID_HOME: "/usr/local/share/android-sdk"
         ANDROID_SDK_ROOT: "/usr/local/share/android-sdk"
+      paths:
+        - $ANDROID_HOME/cmdline-tools/latest/bin
       node: latest
       npm: 6
     cache:
@@ -21,7 +23,7 @@ workflows:
         script: |
           echo "ANDROID_HOME=$ANDROID_HOME"
           echo "ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT"
-          export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+          echo "PATH=$PATH"
           sdkmanager --version || echo "sdkmanager not found"
       - name: Install Android Build Tools
         script: |
@@ -45,7 +47,7 @@ workflows:
     publishing:
       email:
         recipients:
-          - electronicnoise185@gmail.com
+          - soporteparawordpressonline@gmail.com
         notify:
           success: true
           failure: true
