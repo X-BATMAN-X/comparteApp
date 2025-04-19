@@ -11,8 +11,7 @@ workflows:
         APP_URL: "https://comparte.vercel.app/"
         ANDROID_HOME: "/usr/local/share/android-sdk"
         ANDROID_SDK_ROOT: "/usr/local/share/android-sdk"
-      paths:
-        - $ANDROID_HOME/cmdline-tools/latest/bin
+        PATH: "$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
       node: latest
       npm: 6
     cache:
@@ -47,7 +46,7 @@ workflows:
     publishing:
       email:
         recipients:
-          - soporteparawordpressonline@gmail.com
+          - electronicnoise185@gmail.com
         notify:
           success: true
           failure: true
