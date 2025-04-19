@@ -11,7 +11,7 @@
     <preference name="Scheme" value="https" />
     <preference name="Hostname" value="comparte.vercel.app" />
     <platform name="android">
-        <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/application/activity">
+        <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/application/activity[@android:name='MainActivity']">
             <activity android:exported="true" />
         </edit-config>
         <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest">
