@@ -9,12 +9,17 @@ workflows:
       vars:
         PACKAGE_NAME: "com.android.app"
         APP_URL: "https://comparte.vercel.app/"
+      android:
+        build_tools_version: "35.0.0"
       node: latest
       npm: 6
     cache:
       cache_paths:
         - $CM_BUILD_DIR/node_modules
     scripts:
+      - name: Install Android Build Tools
+        script: |
+          sdkmanager "build-tools;35.0.0"
       - name: Install dependencies
         script: |
           npm install
@@ -25,16 +30,16 @@ workflows:
           cordova platform add android --confirm --no-interactive --noresources
       - name: Build Android release
         script: |
-          echo $KEYSTORE | base64 --decode > /tmp/keystore.keystore
+          echo $KEYSTORE | base64 -d > /tmp/keystore.keystore
           cordova build android --release --no-interactive --prod --device
           UNSIGNED_APK_PATH=$(find platforms/android/app/build/outputs -name "*.apk" | head -1)
-          jarsigner -sigalg SHA1withRSA -digestalg SHA1 -keystore "/tmp/keystore.keystore" -storepass "${KEYSTORE_PASSWORD}" -keypass "${KEY_ALIAS_PASSWORD}" "${UNSIGNED_APK_PATH}" "${KEY_ALIAS}"
+          jarsigner -sigalg SHA256withRSA -digestalg SHA-256 -keystore "/tmp/keystore.keystore" -storepass "${KEYSTORE_PASSWORD}" -keypass "${KEY_ALIAS_PASSWORD}" "${UNSIGNED_APK_PATH}" "${KEY_ALIAS}"
     artifacts:
       - platforms/android/app/build/outputs/**/*.apk
     publishing:
       email:
         recipients:
-          - carlosespinoza526@gmail.com
+          - electronicnoise185@gmail.com
         notify:
           success: true
           failure: true
