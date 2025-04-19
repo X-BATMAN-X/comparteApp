@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Comparte App</title>
+</head>
+<body>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script>
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        function onDeviceReady() {
+            // Solicitar permisos de almacenamiento
+            var permissions = cordova.plugins.permissions;
+            var list = [
+                permissions.READ_EXTERNAL_STORAGE,
+                permissions.WRITE_EXTERNAL_STORAGE
+            ];
+
+            permissions.checkPermission(list[0], function(status) {
+                if (!status.hasPermission) {
+                    permissions.requestPermissions(list, function(status) {
+                        if (!status.hasPermission) {
+                            alert("Permisos de almacenamiento denegados. Algunas funciones pueden no funcionar.");
+                        }
+                        // Redirige después de manejar permisos
+                        window.location.href = "https://comparte.vercel.app/";
+                    }, function(error) {
+                        alert("Error al solicitar permisos: " + error);
+                    });
+                } else {
+                    // Redirige si ya tienes permisos
+                    window.location.href = "https://comparte.vercel.app/";
+                }
+            }, null);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.android.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>comparteApp</name>
+    <description>Aplicación para mostrar comparte.vercel.app</description>
+    <author email="tu@email.com" href="http://tu.sitio.com">Tu Nombre</author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-navigation href="https://comparte.vercel.app/*" />
+    <preference name="Scheme" value="https" />
+    <preference name="Hostname" value="comparte.vercel.app" />
+    <platform name="android">
+        <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/application/activity">
+            <activity android:exported="true" />
+        </edit-config>
+        <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest">
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        </edit-config>
+    </platform>
+</widget>
